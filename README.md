@@ -1,13 +1,6 @@
 # DIDComm Modular Implementation
 
-[![Dart Version](https://img.shields.io/badge/Dart-2.19+-blue.svg)](https://dart.dev)
-[![DIDComm v2](https://img.shields.io/badge/DIDComm-v2-green.svg)](https://identity.foundation/didcomm-messaging/spec/)
-[![Blake3](https://img.shields.io/badge/Blake3-Hash-purple.svg)](https://github.com/BLAKE3-team/BLAKE3)
-
-Una implementación modular y extensible del protocolo DIDComm v2 en
-Dart, con soporte para Trust Ping 2.0 y mediación de mensajes. Esta biblioteca
-utiliza Blake3 para la generación de identificadores DID, manejo estructurado de
-errores y un sistema de logging configurable.
+Una implementación modular y extensible del protocolo DIDComm v2 en Dart, con soporte para Trust Ping 2.0 y mediación de mensajes. Esta biblioteca utiliza Blake3 para la generación de identificadores DID, manejo estructurado de errores y un sistema de logging configurable.
 
 ## Índice
 
@@ -62,14 +55,78 @@ errores y un sistema de logging configurable.
 
 ### Archivo .env
 
-```env
-USE_WS
-DIDCOMM_ENDPOINT
-DIDCOMM_WS
+Crea un archivo `.env` en la carpeta `assets/` con la siguiente estructura:
 
 ```
+# Endpoint del mediador DIDComm
+MEDIATOR_ENDPOINT=https://tu-mediador.ejemplo.com
 
-#### Mensajes básicos
+# Usar WebSockets para comunicaciones (true/false)
+USE_WEBSOCKETS=true
+
+# Nivel de logging (debug, info, warning, error)
+LOG_LEVEL=info
+```
+
+### Cómo cargar la configuración
+
+```dart
+// En el punto de entrada de tu aplicación
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+Future<void> main() async {
+  await dotenv.load(fileName: "assets/.env");
+  
+  // Inicializar el cliente DIDComm
+  final logger = Logger(LogLevel.info);
+  final client = await DIDCommClient.create(logger: logger);
+}
+```
+
+## Estructura del Proyecto
+
+```
+didcomm/
+├── lib/
+│   ├── crypto/                 # Operaciones criptográficas
+│   │   ├── did_generator.dart  # Generación de DIDs con Blake3
+│   │   ├── jwe_encryptor.dart  # Cifrado JWE
+│   │   └── ldp_signer.dart     # Firma con Linked Data Proofs
+│   ├── didcomm/                # Núcleo DIDComm
+│   │   ├── client.dart         # Cliente DIDComm (API pública)
+│   │   ├── message.dart        # Estructura de mensajes DIDComm
+│   │   └── types.dart          # Definiciones de tipos
+│   ├── protocols/              # Protocolos DIDComm
+│   │   ├── mediation/          # Protocolo de mediación
+│   │   └── trust_ping/         # Protocolo Trust Ping 2.0
+│   ├── services/               # Servicios externos
+│   │   ├── did_resolver.dart   # Resolución de DIDs
+│   │   └── transport.dart      # Transporte HTTP/WS
+│   ├── utils/                  # Utilidades
+│   │   ├── error_handler.dart  # Manejo estructurado de errores
+│   │   └── logger.dart         # Sistema de logging
+│   └── didcomm.dart            # Punto de entrada y API pública
+└── test/                       # Pruebas unitarias y de integración
+```
+
+## API Pública
+
+### Inicialización del Cliente
+
+```dart
+// Crear una nueva instancia de cliente
+final client = await DIDCommClient.create(
+  logger: Logger(LogLevel.info),
+);
+
+// O restaurar a partir de claves existentes
+final client = await DIDCommClient.create(
+  existingDidJson: serializedKeys,
+  logLevel: 'debug',
+);
+```
+
+### Mensajes básicos
 
 ```dart
 // Enviar un mensaje genérico

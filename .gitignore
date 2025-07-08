@@ -46,3 +46,8 @@ app.*.map.json
 
 
 *.env
+
+flujo_implementacion_simplificado.md
+primera_conexion.md
+estructura.txt
+presentacion_arquitectura.md
