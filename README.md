@@ -4,7 +4,7 @@
 [![DIDComm v2](https://img.shields.io/badge/DIDComm-v2-green.svg)](https://identity.foundation/didcomm-messaging/spec/)
 [![Blake3](https://img.shields.io/badge/Blake3-Hash-purple.svg)](https://github.com/BLAKE3-team/BLAKE3)
 
-Una implementación modular y extensible y robusta del protocolo DIDComm v2 en
+Una implementación modular y extensible del protocolo DIDComm v2 en
 Dart, con soporte para Trust Ping 2.0 y mediación de mensajes. Esta biblioteca
 utiliza Blake3 para la generación de identificadores DID, manejo estructurado de
 errores y un sistema de logging configurable.
