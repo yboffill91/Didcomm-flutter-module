@@ -263,6 +263,3 @@ flutter test
 Se agradecen las contribuciones. Por favor, asegúrate de seguir las directrices
 de código y añadir pruebas unitarias para cualquier nueva funcionalidad.
 
-## Licencia
-
-[Especificar licencia]
