@@ -1,0 +1,27 @@
+name: android_wallet_mydsc
+description: Wallet Flutter para DIDComm v2 con MyDSC
+version: 1.0.0
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.5
+  uuid: ^4.1.0
+  web_socket_channel: ^2.4.0
+  cryptography: ^2.5.0
+  convert: ^3.1.1
+  bs58: ^1.0.2
+  flutter_dotenv: ^5.1.0
+  flutter_secure_storage: ^8.0.0
+  crypto: ^3.0.2
+  thirds: ^0.2.0-alpha
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.4.2
+  build_runner: ^2.4.6
+  test: ^1.24.3

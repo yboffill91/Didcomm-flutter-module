@@ -1,0 +1,22 @@
+lib/
+├── main.dart
+├── config/
+│   └── env.dart
+├── crypto/
+│   ├── did_generator.dart
+│   ├── key_store.dart
+│   ├── ldp_signer.dart
+│   ├── jwe_encryptor.dart
+│   ├── jwe_decryptor.dart
+│   ├── ldp_verifier.dart
+├── didcomm/
+│   ├── message_model.dart
+│   ├── service_didcomm.dart
+│   ├── forward_handler.dart
+│   └── mediator_controller.dart
+├── screens/
+│   └── wallet_home.dart
+├── services/
+│   └── api_client.dart
+assets/
+└── .env
